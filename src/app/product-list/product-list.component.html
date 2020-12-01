@@ -1,0 +1,25 @@
+<h1>Lista de productos</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Nombre</th>
+            <th>Variedad</th>
+            <th>Precio unitario</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let producto of productos" [ngClass]="{'promocion': producto.promocion}">
+            <td><img [src]="producto.imagen" [alt]="producto.nombre"></td>
+            <td>{{producto.nombre}}</td>
+            <td>{{producto.variedad}}</td>
+            <td>{{producto.precio | currency }}</td>
+            <td> <span class="badge badge-warning" *ngIf="producto.stock==0">
+                    No disponible
+                </span>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
