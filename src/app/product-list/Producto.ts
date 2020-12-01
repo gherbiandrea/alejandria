@@ -4,5 +4,6 @@ export interface Producto {
     precio: number;
     stock: number;
     imagen: string;
-    promocion: boolean
+    promocion: boolean;
+    cantidad: number
 }

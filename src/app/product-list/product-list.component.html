@@ -1,17 +1,19 @@
 <h1>Lista de productos</h1>
-<table class="table">
+<table class="table text-center">
     <thead>
         <tr>
             <th>Producto</th>
             <th>Nombre</th>
             <th>Variedad</th>
-            <th>Precio unitario</th>
+            <th>Precio</th>
             <th>Stock</th>
+            <th>Compra</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let producto of productos" [ngClass]="{'promocion': producto.promocion}">
-            <td><img [src]="producto.imagen" [alt]="producto.nombre"></td>
+            <td><img width = "90px" class="img-thumbnail" 
+                [src]="producto.imagen" [alt]="producto.nombre"></td>
             <td>{{producto.nombre}}</td>
             <td>{{producto.variedad}}</td>
             <td>{{producto.precio | currency }}</td>
@@ -19,6 +21,14 @@
                     No disponible
                 </span>
             </td>
+            <td>
+                <button class="btn-primary btn-sm" (click)="downQuantity(producto)">-</button>
+                <input 
+                    type="text" 
+                    [(ngModel)]="producto.cantidad"
+                    (keyup)="changeQuantity($event, producto)"    
+                > 
+                <button class="btn-primary btn-sm" (click)="upQuantity(producto)">+</button></td>
         </tr>
 
     </tbody>
