@@ -25,7 +25,6 @@
             <td>
                 <app-input-integer [(cantidad)]="producto.cantidad" [max]="producto.stock" 
                 *ngIf="producto.stock" (maxReached)="maxReached($event)"> </app-input-integer>
-                Cant: {{producto.cantidad}}
             </td> 
             <td>   
                 <button class="btn btn-primary" (click)="agregarAlCarrito(producto)" >Comprar</button>
