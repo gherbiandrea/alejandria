@@ -17,7 +17,7 @@ export class InputIntegerComponent implements OnInit {
   max: number;
 
   @Output()
-  quantityChange: EventEmitter<number> = new EventEmitter<number>();
+  cantidadChange: EventEmitter<number> = new EventEmitter<number>();
 
   @Output()
   maxReached: EventEmitter<string> = new EventEmitter<string>();
@@ -29,7 +29,7 @@ export class InputIntegerComponent implements OnInit {
   upQuantity(): void{
     if (this.cantidad < this.max) {
       this.cantidad++;
-      this.quantityChange.emit(this.cantidad);
+      this.cantidadChange.emit(this.cantidad);
     }
     else {
       this.maxReached.emit("Se alcanzó el máximo");
@@ -39,12 +39,12 @@ export class InputIntegerComponent implements OnInit {
   downQuantity(): void{
     if (this.cantidad > 0)
       this.cantidad--;
-      this.quantityChange.emit(this.cantidad);
+      this.cantidadChange.emit(this.cantidad);
   }
 
   changeQuantity(event): void {
-    
-    this.quantityChange.emit(this.cantidad);
+    console.log(event.key);
+    this.cantidadChange.emit(this.cantidad);
     
   }
 }
