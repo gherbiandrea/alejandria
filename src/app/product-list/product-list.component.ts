@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CarritoProdService } from '../carrito-prod.service';
 import { Producto } from './Producto';
 
 @Component({
@@ -55,23 +56,22 @@ export class ProductListComponent implements OnInit {
     cantidad: 0,
   }
 ]
-  constructor() { }
+  
+  constructor(private carrito: CarritoProdService) { 
+    
+  }
 
   ngOnInit(): void {
   }
 
-  upQuantity(producto: Producto): void{
-    if (producto.cantidad < producto.stock)
-      producto.cantidad++;
+  agregarAlCarrito(producto): void {
+    this.carrito.agregarAlCarrito(producto);
+    producto.stock -= producto.cantidad ;
+    producto.cantidad = 0 ;
   }
 
-  downQuantity(producto: Producto): void{
-    if (producto.cantidad > 0)
-      producto.cantidad--;
-  }
+  maxReached(m: string){
+    alert(m);
+}
 
-  changeQuantity(event, producto: Producto): void {
-    if (event.key < '0' || event.key > '9')
-      event.preventDefault();
-  }
 }

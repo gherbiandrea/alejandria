@@ -7,6 +7,7 @@
             <th>Variedad</th>
             <th>Precio</th>
             <th>Stock</th>
+            <th>Cantidad</th>
             <th>Compra</th>
         </tr>
     </thead>
@@ -22,13 +23,12 @@
                 </span>
             </td>
             <td>
-                <button class="btn-primary btn-sm" (click)="downQuantity(producto)">-</button>
-                <input 
-                    type="text" 
-                    [(ngModel)]="producto.cantidad"
-                    (keyup)="changeQuantity($event, producto)"    
-                > 
-                <button class="btn-primary btn-sm" (click)="upQuantity(producto)">+</button></td>
+                <app-input-integer [cantidad]="producto.cantidad" [max]="producto.stock" 
+                *ngIf="producto.stock" (maxReached)="maxReached($event)"> </app-input-integer>
+            </td> 
+            <td>   
+                <button class="btn btn-primary" (click)="agregarAlCarrito(producto)" >Comprar</button>
+            </td>
         </tr>
 
     </tbody>
